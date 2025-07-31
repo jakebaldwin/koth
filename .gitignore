@@ -3,7 +3,6 @@ build/
 build-*/
 **/build/
 **/build-*/
-
 # CMake generated files
 CMakeCache.txt
 CMakeFiles/
@@ -14,7 +13,6 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps/
-
 # C++ compiled objects and libraries
 *.o
 *.a
@@ -22,28 +20,34 @@ _deps/
 *.dylib
 *.dll
 *.exe
-
 # Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
-
-# Generated executables (common test naming patterns)
+# Generated executables (common test naming patterns) - be more specific
 *_tests
 *_test
 test_*
+!test_*.cpp
+!test_*.cc
+!test_*.cxx
+!**/tests/*.cpp
+!**/tests/*.cc
+!**/tests/*.cxx
 **/tests/*_tests
 **/tests/*_test
+# But still ignore compiled test executables in tests directories
 **/tests/test_*
-
+!**/tests/test_*.cpp
+!**/tests/test_*.cc
+!**/tests/test_*.cxx
 # Temporary files
 *.tmp
 *.temp
 *.swp
 *.swo
 *~
-
 # IDE files
 .vscode/
 .vs/
@@ -53,19 +57,15 @@ test_*
 *.user
 *.userosscache
 *.sln.docstates
-
 # CLion
 .idea/
 cmake-build-*/
-
 # Xcode
 *.xcodeproj/
 *.xcworkspace/
-
 # vim/neovim
 .*.un~
 Session.vim
 .netrwhist
-
 # macOS
-.DS_store
+.DS_Store
