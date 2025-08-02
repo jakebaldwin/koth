@@ -1,83 +1,114 @@
 #ifndef ORDER_BOOK_H
 #define ORDER_BOOK_H
 
-#include "main_training_engine/order.h"
-#include "main_training_engine/trade.h"
+#include <cstdint>
+#include <functional>
+#include <map>
+#include <vector>
+
+#include "common_types/enums.h"
+#include "common_types/market_data.h"
+#include "common_types/order.h"
+#include "common_types/trade.h"
+#include "common_types/type_aliases.h"
 
 class OrderBook {
  public:
-  OrderBook();
+  OrderBook() : l2_cache_dirty_(false), l3_cache_dirty_(false);
 
   ~OrderBook() = default;
 
-  /* Common functions */
-  // TODO - does this need to return a code? status?
-  void PlaceOrder(const Order& order);
+  /* Core functions - External Interface */
+  std::vector<Trade> PlaceOrder(const Order& order);
 
-  void CancelOrder(const uint64_t& order_id);
+  void CancelOrder(OrderId order_id);
 
-  void ModifyOrder(const uint64_t& order_id, const Order& modified_order);
+  void ModifyOrder(OrderId order_id, const Order& modified_order);
 
   /* L1 Methods */
   const Order& GetBestBid() const;
 
   const Order& GetBestOffer() const;
 
-  const Trade& GetLastTrade() const;
+  Price GetSpread() const;
 
-  // Should these return a const reference or just a uint64_t, because
-  // the calling function might do math with these and want them to be
-  // modifiable
-  const uint64_t& GetSpread() const;
-
-  const uint64_t& GetMidPrice() const;
+  Price GetMidPrice() const;
 
   /* vol_bid * price_ask + vol_ask * price_bid all
     divided by the volume_bid + volume_ask. */
-  const uint64_t GetMicroPrice() const;
+  Price GetMicroPrice() const;
 
   /* L2 Methods */
-  // const ??? GetMarketDepth(??) const;
+  std::vector<PriceLevel> GetMarketDepthBid(int max_depth) const;
 
-  // const ?? GetBookSnapshot() const;
+  std::vector<PriceLevel> GetMarketDepthAsk(int max_depth) const;
+
+  BookSnapshot GetBookSnapshot(int max_depth) const;
 
   /* L3 Methods */
-  // time price priority based methods
+  L3BookSnapshot GetL3BookSnapshot() const;
 
   /* Query and inspection methods */
-  const Order& GetOrderStatus(uint64_t order_id) const;
+  const Order& GetOrderStatus(OrderId order_id) const;
 
-  uint64_t GetTotalVolume() const;
+  Quantity GetTotalVolume() const;
 
   int GetOrderCount() const;
 
-  // should this be multiple methods?
-  // const ??? GetBookStatistics() const;
+  int GetOrderPosition(OrderId order_id) const;
 
   /* Admin methods */
-  const void Clear() const;
+  void Clear();
 
-  const bool isEmpty() const;
+  bool isEmpty() const;
 
   /* Event methods */
-  // order added
-  //
-  // order cancelled
-  //
-  // order matched / filled
-  //
-  // best bid / offer changed
-  //
-  // new trade occurred
+  /** TODO - later on. Think about using callbacks.
+   *         callbacks are when the caller can register a function
+   *         to be invoked by the order manager when an event happens
+   *    - order added
+   *    - order cancelled
+   *    - order matched / filled
+   *    - best bid / offer changed
+   *    - new trade occurred
+   */
+  // void RegisterOrderEventCallback(/* callback function */);
+  // void RegisterTradeEventCallback(/* callback function */);
 
-  const void Match() const;
-
-  const void UpdatePriceLevels() const;
-
-  const void RecomputeBBO() const;
-
+  /* Delta methods */
+  /** TODO - implement delta methods to our cached data,
+   *         so instead of returning an entire book snapshot
+   *         we can just return what changed
+   */
  private:
-  uint32_t symbol_id_;
+  /* Internal methods */
+  void Match() const;
+  void UpdatePriceLevels() const;
+  void RecomputeBBO() const;
+  void BuildL3Cache();
+
+  SymbolId symbol_id_;
+
+  /* Core order storage */
+  // TODO - convert these to use Order Pools!!
+  std::map<Price, std::queue<Order>, std::greater<uint64_t>> bids_;
+  std::map<Price, std::queue<Order>> asks_;
+
+  /* Fast Lookup */
+  std::unordered_map<OrderId, OrderPosition> order_lookup_;
+
+  /* Cached Data */
+  Order* best_bid_;
+  Order* best_ask_;
+
+  // L2 cache
+  std::vector<PriceLevel> cached_l2_bids_;
+  std::vector<PriceLevel> cached_l2_asks_;
+  bool l2_cache_dirty_;
+
+  // L3 cache
+  L3BookSnapshot cached_l3_;
+  bool l3_cache_dirty_;
 };
 
 #endif
