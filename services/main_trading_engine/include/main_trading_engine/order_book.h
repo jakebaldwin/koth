@@ -11,6 +11,7 @@
 #include "common_types/order.h"
 #include "common_types/trade.h"
 #include "common_types/type_aliases.h"
+#include "memory_pool/order_pool.h"
 
 class OrderBook {
  public:
@@ -90,9 +91,9 @@ class OrderBook {
   SymbolId symbol_id_;
 
   /* Core order storage */
-  // TODO - convert these to use Order Pools!!
-  std::map<Price, std::queue<Order>, std::greater<uint64_t>> bids_;
-  std::map<Price, std::queue<Order>> asks_;
+  OrderPool order_pool_;
+  std::map<Price, std::queue<Order*>, std::greater<uint64_t>> bids_;
+  std::map<Price, std::queue<Order*>> asks_;
 
   /* Fast Lookup */
   std::unordered_map<OrderId, OrderPosition> order_lookup_;
