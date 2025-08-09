@@ -1,23 +1,21 @@
 #ifndef COMMON_TYPES_CONSTANTS_H
 #define COMMON_TYPES_CONSTANTS_H
 
-#include <cstdint>
+#include <cstddef>
 
-namespace trading {
-namespace constants {
+namespace trading::constants {
 
 /* Trade History Limits */
-constexpr size_t kMaxInMemoryTrades = 10000;
-constexpr size_t kMaxTradesPerSymbol = 1000;
+constexpr size_t MaxInMemoryTrades = 10000;
+constexpr size_t MaxTradesPerSymbol = 1000;
 
 /* Order Book Limits */
-constexpr size_t kMaxOrdersPerPriceLevel = 500;
-constexpr size_t kMaxPriceLevels = 1000;
+constexpr size_t MaxOrdersPerPriceLevel = 500;
+constexpr size_t MaxPriceLevels = 1000;
 
 /* Performance Tuning*/
-constexpr size_t kOrderPoolSize = 50000;
+constexpr size_t OrderPoolSize = 50000;
 
-}  // namespace constants
-}  // namespace trading
+} // namespace trading::constants
 
 #endif

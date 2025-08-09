@@ -3,19 +3,18 @@
 
 #include <vector>
 
-template <typename T>
-class MemoryPool {
- public:
+template <typename T> class MemoryPool {
+public:
   MemoryPool(size_t pool_size);
 
-  T* GetObject();
-  void ReleaseObject(T* object);
+  T *GetObject();
+  void ReleaseObject(T *object);
   size_t AvailableCount() const;
   size_t TotalCount() const;
 
- private:
+private:
   std::vector<T> storage_;
-  std::vector<T*> available_;
+  std::vector<T *> available_;
 };
 
 #endif

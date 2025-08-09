@@ -18,7 +18,7 @@ endif()
 # Compiler flags
 if(CMAKE_BUILD_TYPE STREQUAL "Production")
     set(CMAKE_CXX_FLAGS_PRODUCTION "-O3 -DNDEBUG -march=native -flto")
-elseif(CMAKE_BUILD_TYPE STREQUAL "Release")  
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -march=native")
 else()
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -Wall -Wextra")
@@ -26,5 +26,6 @@ endif()
 
 # Add subdirectories
 add_subdirectory(symbol_table)
+add_subdirectory(trade_history)
 #add_subdirectory(memory_pool)
 #add_subdirectory(lock_free_buffers)

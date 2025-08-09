@@ -1,23 +1,20 @@
 #include "symbol_table/symbol_table.h"
 
 #include <iostream>
-#include <stdexcept>
 
-uint32_t SymbolTable::GetSymbolIdUnsafe(const std::string& symbol) const {
+using namespace trading::types;
+
+SymbolId SymbolTable::getSymbolIdUnsafe(const std::string &symbol) const {
   return string_to_id_.at(symbol);
 }
 
-uint32_t SymbolTable::GetSymbolIdSafe(const std::string& symbol) const {
+std::optional<SymbolId>
+SymbolTable::getSymbolIdSafe(const std::string &symbol) const {
   auto it = string_to_id_.find(symbol);
-
-  if (it == string_to_id_.end()) {
-    // TODO - log error
-    return kInvalidSymbolId;
-  }
-  return it->second;
+  return (it != string_to_id_.end()) ? std::optional{it->second} : std::nullopt;
 }
 
-const std::string& SymbolTable::GetSymbolString(uint32_t id) const {
+const std::string &SymbolTable::getSymbolString(SymbolId id) const {
   auto it = id_to_string_.find(id);
 
   if (it == id_to_string_.end()) {
@@ -28,12 +25,12 @@ const std::string& SymbolTable::GetSymbolString(uint32_t id) const {
   return it->second;
 }
 
-void SymbolTable::LoadFromFile(const std::string& config_file) {
-  std::cout << "config file: " << config_file << std::endl;
+void SymbolTable::loadFromFile(const std::string &config_file) {
+  std::cout << "config file: " << config_file << "\n";
   // TODO - implement this method
 }
 
-void SymbolTable::AddSymbol(const std::string& symbol) {
+void SymbolTable::addSymbol(const std::string &symbol) {
   auto it = string_to_id_.find(symbol);
 
   if (it == string_to_id_.end()) {

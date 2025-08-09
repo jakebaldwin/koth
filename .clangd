@@ -1,0 +1,16 @@
+{
+  "Diagnostics": {
+    "ClangTidy": {
+      "Add": [
+        "cppcoreguidelines-*",
+        "performance-*", 
+        "readability-*",
+        "modernize-*"
+      ],
+      "Remove": [
+        "readability-identifier-length",
+        "cppcoreguidelines-avoid-magic-numbers"
+      ]
+    }
+  }
+}
