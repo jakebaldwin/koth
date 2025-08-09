@@ -1,65 +1,80 @@
 #ifndef ORDER_BOOK_H
 #define ORDER_BOOK_H
 
-#include <cstdint>
-#include <functional>
 #include <map>
+#include <queue>
+#include <unordered_map>
 #include <vector>
 
-#include "common_types/enums.h"
 #include "common_types/market_data.h"
 #include "common_types/order.h"
 #include "common_types/trade.h"
-#include "common_types/type_aliases.h"
 #include "memory_pool/order_pool.h"
 
-class OrderBook {
- public:
-  OrderBook() : l2_cache_dirty_(false), l3_cache_dirty_(false);
+// order_book.h
 
+class OrderBook {
+public:
+  /// Constructor
+  OrderBook(trading::types::SymbolId symbol_id);
+
+  /// Copy Constructor
+  OrderBook(const OrderBook &other) = delete;
+
+  /// Copy Assignment Operator
+  OrderBook &operator=(const OrderBook &other) = delete;
+
+  /// Move Constructor
+  OrderBook &operator=(OrderBook &&other) noexcept = delete;
+
+  /// Move Assignment Operator
+  OrderBook(OrderBook &&other) noexcept = delete;
+
+  /// Destructor
   ~OrderBook() = default;
 
   /* Core functions - External Interface */
-  std::vector<Trade> PlaceOrder(const Order& order);
+  std::vector<Trade> placeOrder(const Order &order);
 
-  void CancelOrder(OrderId order_id);
+  void cancelOrder(trading::types::OrderId order_id);
 
-  void ModifyOrder(OrderId order_id, const Order& modified_order);
+  void modifyOrder(trading::types::OrderId order_id,
+                   const Order &modified_order);
 
   /* L1 Methods */
-  const Order& GetBestBid() const;
+  const Order &getBestBid() const;
 
-  const Order& GetBestOffer() const;
+  const Order &getBestOffer() const;
 
-  Price GetSpread() const;
+  trading::types::Price getSpread() const;
 
-  Price GetMidPrice() const;
+  trading::types::Price getMidPrice() const;
 
   /* vol_bid * price_ask + vol_ask * price_bid all
     divided by the volume_bid + volume_ask. */
-  Price GetMicroPrice() const;
+  trading::types::Price getMicroPrice() const;
 
   /* L2 Methods */
-  std::vector<PriceLevel> GetMarketDepthBid(int max_depth) const;
+  std::vector<PriceLevel> getMarketDepthBid(int max_depth) const;
 
-  std::vector<PriceLevel> GetMarketDepthAsk(int max_depth) const;
+  std::vector<PriceLevel> getMarketDepthAsk(int max_depth) const;
 
-  BookSnapshot GetBookSnapshot(int max_depth) const;
+  BookSnapshot getBookSnapshot(int max_depth) const;
 
   /* L3 Methods */
-  L3BookSnapshot GetL3BookSnapshot() const;
+  L3BookSnapshot getL3BookSnapshot() const;
 
   /* Query and inspection methods */
-  const Order& GetOrderStatus(OrderId order_id) const;
+  const Order &getOrderStatus(trading::types::OrderId order_id) const;
 
-  Quantity GetTotalVolume() const;
+  trading::types::Quantity getTotalVolume() const;
 
-  int GetOrderCount() const;
+  int getOrderCount() const;
 
-  int GetOrderPosition(OrderId order_id) const;
+  int getOrderPosition(trading::types::OrderId order_id) const;
 
   /* Admin methods */
-  void Clear();
+  void clear();
 
   bool isEmpty() const;
 
@@ -81,26 +96,27 @@ class OrderBook {
    *         so instead of returning an entire book snapshot
    *         we can just return what changed
    */
- private:
+private:
   /* Internal methods */
-  void Match() const;
-  void UpdatePriceLevels() const;
-  void RecomputeBBO() const;
-  void BuildL3Cache();
+  void match() const;
+  void updatePriceLevels() const;
+  void recomputeBBO() const;
+  void buildL3Cache();
 
-  SymbolId symbol_id_;
+  trading::types::SymbolId symbol_id_;
 
   /* Core order storage */
   OrderPool order_pool_;
-  std::map<Price, std::queue<Order*>, std::greater<uint64_t>> bids_;
-  std::map<Price, std::queue<Order*>> asks_;
+  std::map<trading::types::Price, std::queue<Order *>, std::greater<uint64_t>>
+      bids_;
+  std::map<trading::types::Price, std::queue<Order *>> asks_;
 
   /* Fast Lookup */
-  std::unordered_map<OrderId, OrderPosition> order_lookup_;
+  std::unordered_map<trading::types::OrderId, OrderPosition> order_lookup_;
 
   /* Cached Data */
-  Order* best_bid_;
-  Order* best_ask_;
+  Order *best_bid_;
+  Order *best_ask_;
 
   // L2 cache
   std::vector<PriceLevel> cached_l2_bids_;

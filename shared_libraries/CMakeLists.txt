@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.20.0)
 project(shared_libraries)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Build types
@@ -27,5 +27,6 @@ endif()
 # Add subdirectories
 add_subdirectory(symbol_table)
 add_subdirectory(trade_history)
-#add_subdirectory(memory_pool)
+add_subdirectory(common_types)
+add_subdirectory(memory_pool)
 #add_subdirectory(lock_free_buffers)

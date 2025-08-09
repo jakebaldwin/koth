@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/build-debug/symbol_table",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/include -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/../common_types/include -O0 -g -Wall -Wextra -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=14.6 -o CMakeFiles/symbol_table.dir/src/symbol_table.cpp.o -c /Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/src/symbol_table.cpp",
+  "file": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/src/symbol_table.cpp",
+  "output": "symbol_table/CMakeFiles/symbol_table.dir/src/symbol_table.cpp.o"
+},
+{
+  "directory": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/build-debug/symbol_table",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/include -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/../common_types/include -isystem /opt/homebrew/include -O0 -g -Wall -Wextra -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=14.6 -o CMakeFiles/symbol_table_tests.dir/tests/test_symbol_table.cpp.o -c /Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/tests/test_symbol_table.cpp",
+  "file": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/symbol_table/tests/test_symbol_table.cpp",
+  "output": "symbol_table/CMakeFiles/symbol_table_tests.dir/tests/test_symbol_table.cpp.o"
+},
+{
+  "directory": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/build-debug/trade_history",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/include -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/../common_types/include -O0 -g -Wall -Wextra -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=14.6 -o CMakeFiles/trade_history.dir/src/trade_history.cpp.o -c /Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/src/trade_history.cpp",
+  "file": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/src/trade_history.cpp",
+  "output": "trade_history/CMakeFiles/trade_history.dir/src/trade_history.cpp.o"
+},
+{
+  "directory": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/build-debug/trade_history",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/include -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/../common_types/include -isystem /opt/homebrew/include -O0 -g -Wall -Wextra -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=14.6 -o CMakeFiles/trade_history_tests.dir/tests/test_trade_history.cpp.o -c /Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/tests/test_trade_history.cpp",
+  "file": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/tests/test_trade_history.cpp",
+  "output": "trade_history/CMakeFiles/trade_history_tests.dir/tests/test_trade_history.cpp.o"
+}
+]

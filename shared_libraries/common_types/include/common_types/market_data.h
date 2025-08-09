@@ -19,6 +19,13 @@ struct BookSnapshot {
   trading::types::SequenceNumber sequence_number;
 };
 
+struct L3BookSnapshot {
+  std::vector<trading::types::Price> bids;
+  std::vector<trading::types::Price> asks;
+  trading::types::Timestamp timestamp;
+  trading::types::SequenceNumber sequence_nubmer;
+};
+
 struct OrderPosition {
   trading::types::Price price;
   Side side;
