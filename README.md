@@ -1,30 +1,30 @@
-# KOTH (King of the Hill) - Ultra-Low Latency Trading Engine
+# koth (king of the hill) - ultra-low latency trading engine
 
-## Overview
-KOTH is a high-performance algorithmic trading system designed for market making
-and arbitrage strategies. Built in C++ with sub-10 microsecond latency targets,
+## overview
+the goal of koth is a high-performance algorithmic trading system designed for market tracking
+arbitrage strategies. built in c++ with sub-10 microsecond latency targets,
 it demonstrates enterprise-grade trading infrastructure suitable for institutional
 environments.
 
-## System Goals
-- Ultra-low latency order execution (<10us order-to-market)
-- Real-time market making with dynamic spread calculation
-- Cross-venue arbitrage detection and execution
-- Comprehensive risk management with emergency controls
+the current state is more a beginner learning how to build an hft.
 
-## High Level Architecture
-- Market data ingestion via FIX protocol
-- Lock-free data structures for zero-copy processing
-- Real-time risk engine with kill switch capabilities
-- Memory-mapped storage for consistent performance
+## system goals
+- ultra-low latency order execution (<10us order-to-market)
+- real-time market making with dynamic spread calculation
+- cross-venue arbitrage detection and execution
+- comprehensive risk management with emergency controls
 
-## Key Technologies
-- Design and Research Phase
+## high level architecture
+- market data ingestion via fix protocol
+- lock-free data structures for zero-copy processing
+- real-time risk engine with kill switch capabilities
+- memory-mapped storage for consistent performance
 
-## Documentation
-- [System Design](docs/system_design.md) - Detailed Architecture
-- [Requirements](docs/requirements.md) - Performance and Functional Specs
-- [Database Schema](docs/database/) - Data models and migrations
+## current status
+- market data order book intial cut done 8/31/25
 
-## Architecture Diagram
-![Architecture Diagram](https://jakebaldwin.github.io/koth/docs/system_design.html)
+## documentation
+- [assumptions](docs/assumptions.md) - assumptions tracking document
+
+## architecture diagram
+[![system design](./docs/system_design.png)](https://jakebaldwin.github.io/koth/docs/system_design.html)
