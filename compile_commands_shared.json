@@ -22,5 +22,18 @@
   "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/include -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/../common_types/include -isystem /opt/homebrew/include -O0 -g -Wall -Wextra -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=14.6 -o CMakeFiles/trade_history_tests.dir/tests/test_trade_history.cpp.o -c /Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/tests/test_trade_history.cpp",
   "file": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/trade_history/tests/test_trade_history.cpp",
   "output": "trade_history/CMakeFiles/trade_history_tests.dir/tests/test_trade_history.cpp.o"
+},
+{
+  "directory": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/build-debug/memory_pool",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/include -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/../common_types/include -O0 -g -Wall -Wextra -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=14.6 -o CMakeFiles/memory_pool.dir/src/memory_pool.cpp.o -c /Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/src/memory_pool.cpp",
+  "file": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/src/memory_pool.cpp",
+  "output": "memory_pool/CMakeFiles/memory_pool.dir/src/memory_pool.cpp.o"
+},
+{
+  "directory": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/build-debug/memory_pool",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/include -I/Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/../common_types/include -isystem /opt/homebrew/include -O0 -g -Wall -Wextra -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=14.6 -o CMakeFiles/memory_pool_tests.dir/tests/test_memory_pool.cpp.o -c /Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/tests/test_memory_pool.cpp",
+  "file": "/Users/jakebaldwin/Documents/programming/koth/shared_libraries/memory_pool/tests/test_memory_pool.cpp",
+  "output": "memory_pool/CMakeFiles/memory_pool_tests.dir/tests/test_memory_pool.cpp.o"
 }
+
 ]

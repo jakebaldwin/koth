@@ -3,9 +3,7 @@
 
 #include "common_types/constants.h"
 #include "common_types/enums.h"
-#include "common_types/market_data.h"
-#include "common_types/order.h"
-#include "common_types/trade.h"
+#include "common_types/market_data_types.h"
 #include "common_types/type_aliases.h"
 
 #include <iostream>

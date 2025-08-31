@@ -1,6 +1,6 @@
-# Order Book Manager Research
+# Market Data Order Book Research
 
-## What is an Order Book Manager?
+## What is an Order Book?
 An Order Book the systems live snapshot of all current buy and sell orders.
 Commonly updated in real time, in memory, with replica A and B holding the same
 data, so if one fails, the other can failover to the other.
@@ -46,67 +46,15 @@ comes in with higher volume.
 - What order types should this support?
 
 ### Implementation Details
-- Might be worth aliasing data types to other things - 'Price - int'
-- 'Quantity - int'
-- 'Order ID - int' etc
+This system is not market making, so the order book does not need to be doing
+any matching. It just needs to be thin and track the current state, as the data
+comes in from the FIX gateway. Current implementation is just L1, track price 
+levels and quantities of buys and asks, and keep BBO data in hot memory. As I
+continue development on the rest of the system, I might determine I need more 
+data from the market data order book, like L2 or even L3 data.
 
-### Claude Generated questions to go and answer.
-1. Data Structure & Performance:
-
-What data structure gives O(1) order insertion/deletion? (Hint: price-level maps + order queues)
-How do you handle price-time priority efficiently?
-Should you use separate bid/ask trees or unified structure?
-How do you quickly find best bid/offer after updates?
-
-2. Memory Management:
-
-How do you pre-allocate order book memory to avoid malloc/free in hot path?
-What's the maximum depth you need to store? (Top 10 levels? Full book?)
-How do you handle order book snapshots for recovery?
-
-3. Update Processing:
-
-How do you apply incremental updates (add/modify/cancel orders)?
-What happens when you receive out-of-order messages?
-How do you detect and handle corrupted market data?
-Do you need to validate order book integrity in real-time?
-
-4. Market Data Levels:
-
-Will you implement all L1/L2/L3, or focus on L2 for market making?
-How do you efficiently calculate mid-price, spread, and depth?
-Do you need historical order book states for backtesting?
-
-5. Multi-Symbol Coordination:
-
-How many symbols will you track simultaneously? (10? 100? 1000?)
-Should each symbol have its own thread or shared processing?
-How do you handle symbol-specific configurations (tick sizes, lot sizes)?
-
-6. Integration Points:
-
-How does Pricing Engine subscribe to order book changes?
-What events do you publish? (BBO change, depth change, trade?)
-How do you handle multiple consumers reading the same book?
-
-Research Suggestions:
-Technical Papers:
-
-Look up "ITCH protocol" (NASDAQ's market data format)
-Research "Price-Time Priority Matching" algorithms
-Study "Memory-Mapped Order Books" implementations
-
-Practical Questions:
-
-How do real exchanges handle order book updates?
-What's the typical message rate for a liquid stock? (1000+ updates/second)
-How do you benchmark order book performance?
-
-Requirements Categories to Define:
-
-Performance: Update latency, lookup speed, memory usage
-Capacity: Max orders per book, max symbols, max depth
-Reliability: Data validation, error handling, recovery
-API: What methods other components need
-
-Want to dive deeper into any of these areas? The data structure choice is probably the most critical decision for your implementation.RetryClaude can make mistakes. Please double-check responses. Sonnet 4
+Considering that this will likely never run on specialty hardware with fiber 
+cables, I might not be able to match the real HFT system microsecond speeds. 
+However seeing where my L1 only method performs, as compared to a then L2 and
+L3 would be interesting, and perhaps I could compare to some popular benchmarks.
+:q

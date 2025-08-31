@@ -12,17 +12,12 @@ template <typename T> MemoryPool<T>::MemoryPool(Count pool_size) {
 }
 
 template <typename T> T *MemoryPool<T>::getObject() {
-  if (!available_.empty()) {
-    T *res = available_.back();
-    available_.pop_back();
-    return res;
-  }
+  T *res = available_.back();
+  available_.pop_back();
+  return res;
 }
 
 template <typename T> void MemoryPool<T>::releaseObject(T *object) {
-  // todo delete any stored object data
-  // does this mean we need to require some sort of free implementation on T?
-
   available_.push_back(object);
 }
 

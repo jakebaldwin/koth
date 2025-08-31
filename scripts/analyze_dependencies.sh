@@ -67,7 +67,7 @@ if [ -n "$SERVICE_NAME" ]; then
             echo "  📄 $filename:"
             
             # Check for shared library includes
-            grep -E "#include.*common_types|#include.*memory_pool|#include.*symbol_table|#include.*trade_history" "$src_file" | sed 's/^/    /' || echo "    (no shared library includes)"
+            grep -E "#include.*common_types|#include.*memory_pool|#include.*symbol_table" "$src_file" | sed 's/^/    /' || echo "    (no shared library includes)"
         fi
     done
     echo ""

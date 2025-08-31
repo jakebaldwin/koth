@@ -25,8 +25,8 @@ else()
 endif()
 
 # Add subdirectories
-add_subdirectory(symbol_table)
-add_subdirectory(trade_history)
 add_subdirectory(common_types)
+add_subdirectory(common_utilities)
 add_subdirectory(memory_pool)
+add_subdirectory(symbol_table)
 #add_subdirectory(lock_free_buffers)

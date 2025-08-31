@@ -8,11 +8,15 @@ add_library(symbol_table
 target_include_directories(symbol_table
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_types/include>
 )
 
 # Alias for consistent naming
 add_library(shared_libraries::symbol_table ALIAS symbol_table)
+
+target_link_libraries(symbol_table
+    PUBLIC
+        common_types
+)
 
 # Tests (only if testing enabled)
 if(BUILD_TESTING)

@@ -8,20 +8,22 @@
 // memory_pool.h
 
 /// Generic class for pre-allocated storage of structs, which handles lookups
-/// and exchange of pointers
+/// and exchange of pointers. Optimized for hot path, it does no checks
 
-/// TODO - look into making sure this will be threadsafe
-///      - also does this need to be per-symbol
-///      - also does this T type need a clear method type thing for deallocation
 template <typename T> class MemoryPool {
 public:
   MemoryPool(trading::types::Count pool_size);
 
   /// Grab an available pointer
-  /// \return object pointer that has null values everywhere
+  /// This method is a hot path and does no validation that there
+  /// are pointers available. It will be up to system monitors and generous
+  /// pre-allocation to determine if the memory pools are becoming exhausted
+  /// \return object pointer
   T *getObject();
 
-  /// Return a pointer
+  /// Return a pointer to the pool so it can be used again elsewhere
+  /// This method does not care if the underlying object has content still,
+  /// as it assumes the next user will overwrite.
   /// \pre the pointer was allocated by the same instances getObject method
   void releaseObject(T *object);
 

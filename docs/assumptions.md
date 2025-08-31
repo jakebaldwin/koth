@@ -1,0 +1,2 @@
+- Trades that come in through the FIX protocol gateway already do the matching 8/30/25
+- We use cents instead of ticks for now. This decision might be changed later, but for now. Cents over ticks 8/31/25

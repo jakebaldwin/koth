@@ -1,6 +1,7 @@
 #ifndef COMMON_TYPES_TYPE_ALIASES_H
 #define COMMON_TYPES_TYPE_ALIASES_H
 
+#include <atomic>
 #include <cstddef>
 #include <cstdint>
 

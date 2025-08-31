@@ -2,6 +2,7 @@
 #define COMMON_TYPES_CONSTANTS_H
 
 #include <cstddef>
+#include <cstdint>
 
 namespace trading::constants {
 
@@ -15,6 +16,8 @@ constexpr size_t MaxPriceLevels = 1000;
 
 /* Performance Tuning*/
 constexpr size_t OrderPoolSize = 50000;
+
+constexpr uint64_t MaxPrice = 99999999;
 
 } // namespace trading::constants
 

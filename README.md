@@ -27,4 +27,4 @@ environments.
 - [Database Schema](docs/database/) - Data models and migrations
 
 ## Architecture Diagram
-![Architecture Diagram](docs/koth_system_design.png)
+![Architecture Diagram](https://jakebaldwin.github.io/koth/docs/system_design.html)

@@ -78,22 +78,21 @@ if(SHARED_LIBRARIES_FOUND)
         INTERFACE_INCLUDE_DIRECTORIES "${SHARED_LIBRARIES_ROOT}/common_types/include"
     )
 
+    add_library(SharedLibs_common_utilities INTERFACE IMPORTED)
+    set_target_properties(SharedLibs_common_utilities PROPERTIES
+        INTERFACE_INCLUDE_DIRECTORIES "${SHARED_LIBRARIES_ROOT}/common_utilities/include"
+    )
+
     add_library(SharedLibs_memory_pool STATIC IMPORTED)
     set_target_properties(SharedLibs_memory_pool PROPERTIES
-        IMPORTED_LOCATION "${SHARED_LIBRARIES_BUILD_DIR}/libmemory_pool.a"
+        IMPORTED_LOCATION "${SHARED_LIBRARIES_BUILD_DIR}/memory_pool/libmemory_pool.a"
         INTERFACE_INCLUDE_DIRECTORIES "${SHARED_LIBRARIES_ROOT}/memory_pool/include"
     )
 
     add_library(SharedLibs_symbol_table STATIC IMPORTED)
     set_target_properties(SharedLibs_symbol_table PROPERTIES
-        IMPORTED_LOCATION "${SHARED_LIBRARIES_BUILD_DIR}/libsymbol_table.a"
+        IMPORTED_LOCATION "${SHARED_LIBRARIES_BUILD_DIR}/symbol_table/libsymbol_table.a"
         INTERFACE_INCLUDE_DIRECTORIES "${SHARED_LIBRARIES_ROOT}/symbol_table/include"
-    )
-
-    add_library(SharedLibs_trade_history STATIC IMPORTED)
-    set_target_properties(SharedLibs_trade_history PROPERTIES
-        IMPORTED_LOCATION "${SHARED_LIBRARIES_BUILD_DIR}/libtrade_history.a"
-        INTERFACE_INCLUDE_DIRECTORIES "${SHARED_LIBRARIES_ROOT}/trade_history/include"
     )
 
     message(STATUS "Configured shared libraries for selective linking")
@@ -117,10 +116,6 @@ else()
         "${CMAKE_CURRENT_SOURCE_DIR}/../shared_libraries/symbol_table/include"
     )
 
-    add_library(SharedLibs_trade_history INTERFACE)
-    target_include_directories(SharedLibs_trade_history INTERFACE
-        "${CMAKE_CURRENT_SOURCE_DIR}/../shared_libraries/trade_history/include"
-    )
 endif()
 
 # Testing setup
@@ -137,10 +132,10 @@ if(BUILD_TESTING)
 endif()
 
 # Add service subdirectories
-add_subdirectory(main_trading_engine)
+add_subdirectory(market_data_pipeline)
 # Uncomment as you create these services:
+# add_subdirectory(trading_engine_core)
 # add_subdirectory(risk_engine)
-# add_subdirectory(market_data_feed)
 # add_subdirectory(portfolio_management)
 # add_subdirectory(fix_gateway)
 # add_subdirectory(inventory_manager)

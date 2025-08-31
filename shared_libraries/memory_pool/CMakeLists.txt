@@ -8,11 +8,15 @@ add_library(memory_pool
 target_include_directories(memory_pool
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_types/include>
 )
 
 # Alias for consistent naming
 add_library(shared_libraries::memory_pool ALIAS memory_pool)
+
+target_link_libraries(memory_pool
+    PUBLIC
+        common_types
+)
 
 # Tests (only if testing enabled)
 if(BUILD_TESTING)
